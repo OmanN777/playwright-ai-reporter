@@ -1,50 +1,75 @@
 # 🤖 AI-Augmented QA Portfolio
 
-Welcome to the **AI-Augmented QA Portfolio**! This repository showcases a Playwright automation framework built with TypeScript, featuring a Page Object Model (POM) architecture, API testing, Visual Regression testing, Network Interception, and a **Custom AI Reporter** powered by Google's Gemini.
+> A Playwright automation framework featuring an **AI-powered failure analysis system** that automatically diagnoses test failures and integrates with GitHub Actions CI/CD.
+
+[![Playwright Tests](https://github.com/OmanN777/playwright-ai-reporter/actions/workflows/playwright.yml/badge.svg)](https://github.com/OmanN777/playwright-ai-reporter/actions/workflows/playwright.yml)
+
+---
 
 ## 🌟 Key Features
 
-*   **Custom AI Reporter (`ai_reporter.ts`)**: Automatically analyzes failed tests using the Gemini 3.5 Flash model and generates a clear, actionable markdown report (`ai-failure-report.md`) containing the Root Cause and Quick Fix.
-*   **API Automation**: CRUD testing utilizing mock backends (JSONPlaceholder).
-*   **UI/E2E Automation**: End-to-end user flows targeting dummy environments (SauceDemo) structured via the Page Object Model (POM) design pattern.
-*   **Network Mocking**: Demonstrates the ability to isolate frontend tests by intercepting network requests and mocking JSON responses.
-*   **Visual Regression Testing**: Automated pixel-perfect comparisons to catch unintended CSS or layout changes.
-*   **CI/CD Integration**: GitHub Actions pipeline (`playwright.yml`) that runs tests automatically and attaches the AI Failure Report to Pull Requests.
+*   **Custom AI Reporter** — Automatically analyzes failed tests using the Gemini AI model and generates a clear, actionable markdown report with Root Cause and Quick Fix suggestions.
+*   **API Automation** — CRUD testing (GET, POST, PUT, DELETE) using JSONPlaceholder mock backend.
+*   **UI / E2E Automation** — End-to-end user flows (e.g., Checkout) structured via the **Page Object Model (POM)** design pattern.
+*   **Network Mocking** — Isolates frontend tests by intercepting network requests and returning mock JSON responses.
+*   **Visual Regression Testing** — Automated pixel-perfect comparisons to catch unintended UI changes.
+*   **CI/CD Integration** — GitHub Actions pipeline that runs all tests automatically on every push.
+
+---
 
 ## 🛠️ Technology Stack
 
-*   **Framework:** [Playwright](https://playwright.dev/)
-*   **Language:** TypeScript
-*   **AI Engine:** [Google Generative AI (Gemini)](https://ai.google.dev/)
-*   **CI/CD:** GitHub Actions
+| Tool | Purpose |
+|---|---|
+| [Playwright](https://playwright.dev/) | Test Automation Framework |
+| TypeScript | Test scripting language |
+| [Google Gemini AI](https://ai.google.dev/) | AI Failure Analysis Engine |
+| GitHub Actions | CI/CD Pipeline |
+
+---
+
+## 📸 Screenshots
+
+### GitHub Actions CI/CD Pipeline
+![GitHub Actions](docs/screenshots/github-actions.png)
+> The CI/CD pipeline automatically triggers on every push to `main`, running the full test suite in the cloud.
+
+### Playwright HTML Test Report
+![Playwright Test Report](docs/screenshots/playwright-report.png)
+> A full run of 30 test cases across UI, API, Visual Regression, and Network Mocking suites, executed on both **Chromium** and **WebKit** browsers.
+
+### AI-Generated Failure Report
+![AI Failure Report](docs/screenshots/ai-failure-report.png)
+> When a test fails, the custom AI Reporter sends the error stack trace to Gemini, which responds with a structured analysis including the **Root Cause** and a **Quick Fix** with code examples.
+
+---
 
 ## 🚀 Getting Started
 
 ### 1. Prerequisites
 - Node.js (v18 or higher)
-- npm or yarn
 
 ### 2. Installation
 ```bash
 # Install NPM dependencies
 npm install
 
-# Install Playwright browsers (Chromium & WebKit only)
+# Install Playwright browsers
 npx playwright install chromium webkit --with-deps
 ```
 
 ### 3. Environment Setup
-Create a `.env` file in the root directory and add your Gemini API key to enable the AI Reporter:
+Create a `.env` file in the root directory:
 ```env
 GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
+---
+
 ## 🧪 Running Tests
 
-You can run the entire test suite or specific tests using Playwright's CLI.
-
 ```bash
-# Run all tests (API, UI, Visual, Mocking)
+# Run all tests
 npx playwright test
 
 # Run only API tests
@@ -53,16 +78,29 @@ npx playwright test tests/api/
 # Run only UI tests
 npx playwright test tests/ui/
 
-# View the HTML test report
+# View the HTML report
 npx playwright show-report
 ```
 
+---
+
 ## 🧠 How the AI Reporter Works
 
-When a test fails (e.g., due to a changed locator or API returning 500), the standard console output can be noisy. Our custom reporter (`utils/ai_reporter.ts`) intercepts the failure:
-1. It sends the error stack trace to the **Gemini 3.5 Flash** model.
-2. The AI analyzes the error and generates a report in `ai-failure-report.md`.
-3. In a CI/CD environment, GitHub Actions will automatically post this markdown report as a comment on the failing Pull Request to help with debugging.
+```
+Test Fails
+    ↓
+ai_reporter.ts intercepts the failure & error stack trace
+    ↓
+Sends error context to Gemini AI API
+    ↓
+Gemini returns: Root Cause + Quick Fix + Code Example
+    ↓
+Saved to ai-failure-report.md
+    ↓
+(On CI) GitHub Actions attaches report to the Pull Request as a comment
+```
 
 ---
-*Created by [OmanN777]*
+
+*Created by [OmanN777](https://github.com/OmanN777)*
+
