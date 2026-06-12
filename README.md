@@ -1,4 +1,4 @@
-# 🤖 AI-Augmented QA Portfolio
+# AI-Augmented QA Portfolio
 
 > A Playwright automation framework featuring an **AI-powered failure analysis system** that automatically diagnoses test failures and integrates with GitHub Actions CI/CD.
 
@@ -6,7 +6,7 @@
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
 *   **Custom AI Reporter** — Automatically analyzes failed tests using the Gemini AI model and generates a clear, actionable markdown report with Root Cause and Quick Fix suggestions.
 *   **API Automation** — CRUD testing (GET, POST, PUT, DELETE) using JSONPlaceholder mock backend.
@@ -17,7 +17,7 @@
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 | Tool | Purpose |
 |---|---|
@@ -28,7 +28,7 @@
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 ### GitHub Actions CI/CD Pipeline
 ![GitHub Actions](docs/screenshots/github-actions.png)
@@ -44,7 +44,7 @@
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Prerequisites
 - Node.js (v18 or higher)
@@ -66,7 +66,7 @@ GEMINI_API_KEY=your_gemini_api_key_here
 
 ---
 
-## 🧪 Running Tests
+## Running Tests
 
 ```bash
 # Run all tests
@@ -84,7 +84,7 @@ npx playwright show-report
 
 ---
 
-## 🧠 How the AI Reporter Works
+## How the AI Reporter Works
 
 ```
 Test Fails
